@@ -163,7 +163,6 @@ var bot = new irc.Client(process.env.irc_server, process.env.nick, {
             }
         });
     });
-/*
     bot.addListener('join', function (channel, nick, message) {
         console.log('**```' + nick + ' has joined IRC ' + '#' + process.env.channel + '      [' + process.env.irc_server + ']```**')
         discordchannel.send('**```' + nick + ' has joined IRC ' + '#' + process.env.channel + '      [' + process.env.irc_server + ']```**');
@@ -180,7 +179,7 @@ var bot = new irc.Client(process.env.irc_server, process.env.nick, {
         console.log('**```' + oldnick + ' is now known as ' + newnick + '```**')
         discordchannel.send('**```' + oldnick + ' is now known as ' + newnick + '```**');
     });
-    */
+    
     // Creates a function to wait for any messages created in discord
     client.on("messageCreate", async (message) => {
         // If the message is from the bot itself or its webhook, ignore it
