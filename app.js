@@ -8,7 +8,7 @@ const { Client, GatewayIntentBits } = require("discord.js");
 // IRC require
 var irc = require("irc");
 const { threadId } = require("worker_threads");
-
+var dc;
 
 
 // Below starts the first seen command testing
@@ -63,6 +63,7 @@ var bot = new irc.Client(process.env.irc_server, process.env.nick, {
     await client.login(process.env.DISCORD_BOT_TOKEN);
     // Need this line below to tell the code later on what channel the bot sends messages to!
     const discordchannel = await client.channels.fetch(process.env.discord_chan_id);
+    dc = discordchannel;
     // Create our first IRC MSG READER
     bot.addListener("message", function (from, to, message) {
         console.log('Discord '+message.charCodeAt(0))
@@ -329,5 +330,6 @@ try {
     // Displaying some werid error on irc if you wanna test it denote the next 4 lines
     process.stdin.on("data", (data) => {
         bot.send("PRIVMSG", "#"+process.env.channel, "[console]: " + data.toString().trim());
+	dc.send("[console]: "+data.toString().trim());
     });
 //})();
